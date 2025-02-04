@@ -83,8 +83,10 @@ let questions = [];
 
 
 function goToStart() {
-    window.location.href = "start.html";
+    window.location.href = "index.html";
 }
+
+
 // ฟังก์ชันสุ่มคำถาม โดยไม่เอาข้อที่เคยใช้แล้วซ้ำ
 function getRandomQuestions(count) {
     let availableIndices = [];
