@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Romance of 3 Kingdoms</title>
+
+  <!-- เรียกใช้ฟอนต์ Sarabun -->
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- เรียกใช้ไฟล์ CSS ภายนอก -->
+  <link rel="stylesheet" href="left.css" />
+</head>
+
+<body>
+  <!-- ภาพพื้นหลังโปร่งใสของหน้าจอเริ่มเกม -->
+  <div id="main-menu-background"></div>
+
+  <!-- ====== หน้าจอเริ่มเกม ====== -->
+  <div id="main-menu" class="screen">
+    <button class="back-to-start" onclick="goToStart()">
+      <img src="img/home2/b1.ico" alt="Back to Start">
+    </button>
+    <h1>Romance <br>of 3 Kingdoms</h1>
+  
+    <form id="player-form">
+      <input type="text" id="player-name" name="player-name" required placeholder="Player's Name" />
+    </form>
+  
+    <div class="button-row">
+      <!-- ไอคอนสามเหลี่ยมใหญ่ (นอกปุ่ม) -->
+      <img src="img/home2/H3-1.ico" alt="play icon" class="big-icon" />
+      <!-- ปุ่มเล่น -->
+      <button class="main-button" onclick="startGame()">
+        PLAY
+      </button>
+  
+      <!-- ไอคอนรถเข็นใหญ่ (นอกปุ่ม) -->
+      <img src="img/home2/S1-1.ico" alt="shop icon" class="big-icon" />
+      <!-- ปุ่มร้านค้า -->
+      <button class="main-button" onclick="goToShop()">
+        SHOP
+      </button>
+    </div>
+  </div>
+  <!-- ============ -->
+
+  <!-- ====== หน้าจอเกมหลัก ====== -->
+  <div id="game-screen" class="screen">
+    <!-- ส่วนหัว มุมบนซ้าย แสดงชื่อผู้เล่น + คะแนนสะสม + ข้อที่ x/y -->
+    <div class="game-header">
+  <!-- โซนซ้าย -->
+  <div class="game-header-left">
+    <p class="player-info">
+      Player: <span id="player-name-display"></span>
+    </p>
+    <p class="player-score">
+      Accumulated score: <span id="accum-score">0</span> Point(s)
+    </p>
+    <p class="question-counter">
+      <span id="question-number">1</span>/<span id="total-questions">5</span>
+    </p>
+  </div>
+
+  <!-- โซนกลาง -->
+  <div class="game-header-center">
+    <h1 class="game-title">
+      <img src="img/left/logo.ico" alt="home icon" class="title-icon" />
+      Romance of 3 Kingdoms
+    </h1>
+  </div>
+
+  <!-- โซนขวา: เพิ่มใหม่สำหรับ Timer -->
+  <div class="game-header-right">
+    <p id="timer">Time: 10</p>
+  </div>
+</div>
+
+    <!-- ส่วนเนื้อหาเกม -->
+    <div class="game-content">
+
+      <div class="game-content-left">
+        <div class="choices-container" id="choices">
+          <br>
+          <p>Choose part of speech that match the given word</p>
+          <button class="choices-container" onclick="checkAnswer('noun')">Noun</button> <br><br>
+          <button class="choices-container" onclick="checkAnswer('verb')">Verb</button> <br><br>
+          <button class="choices-container" onclick="checkAnswer('adjective')">Adjective</button>
+        </div>
+      </div>
+
+      <div class="game-content-center">
+        <div class="question-container">
+          <img id="question-image" src="" class="question-image">
+          <p id="question" class="question-text"></p>
+        </div>
+        <p id="feedback" class="feedback-text"></p>
+      </div>
+
+
+
+      <!-- แสดงผลตอบรับ (ถูก/ผิด) -->
+
+    </div>
+  </div>
+  <!-- ============ -->
+
+  <!-- ====== หน้าสรุปคะแนน ====== -->
+  <div id="score-summary" class="screen">
+    <div class="score-title-row">
+      <img src="img/left/logo.ico" alt="Holmes silhouette" class="score-holmes-silhouette" />
+      <h1 class="score-game-title-top">Romance of 3 Kingdoms</h1>
+    </div>
+
+    <div class="score-summary-layout">
+      <!-- นักสืบอยู่ด้านล่างซ้าย -->
+      <img src="img/left/merfolk.png" alt="Merfolk" class="score-merfolk-img" />
+
+      <!-- กล่องสรุปคะแนนตรงกลาง -->
+      <div class="score-center">
+        <!-- ชื่อผู้เล่น -->
+        <p class="score-player-label">
+          Player <span id="summary-player-name"></span>
+        </p>
+
+        <!-- หัวข้อ "สรุปคะแนนในเกมนี้" -->
+        <p class="score-headline">Total Point</p>
+
+        <!-- คะแนนที่ทำได้ -->
+        <p class="score-points">
+          <span id="final-score" class="score-number"></span>
+        </p>
+
+        <!-- ข้อความชม -->
+        <p class="score-compliment" id="compliment-text">Excellent!!</p>
+
+        <!-- แถวปุ่มล่าง -->
+        <div class="score-button-row">
+          <!-- ปุ่มหน้าแรก -->
+          <button class="score-circle-btn" onclick="goToMainMenu()">
+            <img src="img/home2/Ho1-1.ico" alt="home icon" />
+            <span>HOME</span>
+          </button>
+
+          <!-- ปุ่มร้านค้า -->
+          <button class="score-circle-btn" onclick="goToShop()">
+            <img src="img/shopHome/shop1.ico" alt="shop icon" />
+            <span>SHOP</span>
+          </button>
+
+          <!-- ปุ่มเล่นอีกครั้ง -->
+          <button class="score-playagain-btn" onclick="restartGame()">
+            PLAY AGAIN
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ============ -->
+
+  <!-- ====== หน้าร้านค้า ====== -->
+  <div id="shop-screen" class="screen">
+
+    <div class="shop-header-container">
+      <div class="shop-header">
+        <h2 class="shop-title">
+          <img src="img/shopHome/S2-1.ico" alt="cart icon" class="cart-icon" />
+          SHOP
+        </h2>
+      </div>
+
+      <!-- ปุ่มหน้าแรก อยู่มุมขวา -->
+      <button class="shop-home-button" onclick="goToMainMenu()">
+        <img src="img/home2/Ho1-1.ico" alt="home icon" />
+        <span>HOME</span>
+      </button>
+    </div>
+
+    <div class="shop-player-info">
+      <p>Player: <span id="shop-player-name">-</span></p>
+      <p>Point: <span id="shop-score">0</span></p>
+    </div>
+
+    <div id="backgrounds">
+      <div class="background-item" id="bg-1">
+        <div class="background-image">
+          <img src="img/shopHome/1.jpg" alt="BG 1" />
+        </div>
+        <div class="price-container">
+          <!-- ราคา -->
+          <div class="price-info">
+            <img src="img/shopHome/S2-1.ico" alt="coin icon" />
+            10 Points
+          </div>
+          <!-- ปุ่มซื้อ -->
+          <button class="shop-button" id="btn-bg-1" onclick="handleBackgroundAction(1)">Buy</button>
+        </div>
+      </div>
+
+      <div class="background-item" id="bg-2">
+        <div class="background-image">
+          <img src="img/shopHome/2.jpg" alt="BG 2" />
+        </div>
+        <div class="price-container">
+          <div class="price-info">
+            <img src="img/shopHome/S2-1.ico" alt="coin icon" />
+            10 Points
+          </div>
+          <button class="shop-button" id="btn-bg-2" onclick="handleBackgroundAction(2)">Buy</button>
+        </div>
+      </div>
+
+      <div class="background-item" id="bg-3">
+        <div class="background-image">
+          <img src="img/shopHome/3.jpg" alt="BG 3" />
+        </div>
+        <div class="price-container">
+          <div class="price-info">
+            <img src="img/shopHome/S2-1.ico" alt="coin icon" />
+            10 Points
+          </div>
+          <button class="shop-button" id="btn-bg-3" onclick="handleBackgroundAction(3)">Buy</button>
+        </div>
+      </div>
+
+      <div class="background-item" id="bg-4">
+        <div class="background-image">
+          <img src="img/shopHome/4.jpg" alt="BG 4" />
+        </div>
+        <div class="price-container">
+          <!-- ราคา -->
+          <div class="price-info">
+            <img src="img/shopHome/S2-1.ico" alt="coin icon" />
+            10 Points
+          </div>
+          <!-- ปุ่มซื้อ -->
+          <button class="shop-button" id="btn-bg-4" onclick="handleBackgroundAction(4)">Buy</button>
+        </div>
+      </div>
+
+      <div class="background-item" id="bg-5">
+        <div class="background-image">
+          <img src="img/shopHome/5.jpg" alt="BG 5" />
+        </div>
+
+        <div class="price-container">
+          <div class="price-info">
+            <img src="img/shopHome/S2-1.ico" alt="coin icon" />
+            10 Points
+          </div>
+          <button class="shop-button" id="btn-bg-5" onclick="handleBackgroundAction(5)">Buy</button>
+        </div>
+      </div>
+
+      <div class="background-item" id="bg-6">
+        <div class="background-image">
+          <img src="img/shopHome/6.jpg" alt="BG 6" />
+        </div>
+        <div class="price-container">
+          <div class="price-info">
+            <img src="img/shopHome/S2-1.ico" alt="coin icon" />
+            10 Points
+          </div>
+          <button class="shop-button" id="btn-bg-6" onclick="handleBackgroundAction(6)">Buy</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- ============ -->
+
+  <!-- เรียกใช้ไฟล์ JavaScript ภายนอก -->
+  <script src="left.js"></script>
+</body>
+
+</html>

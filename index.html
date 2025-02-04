@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เลือกเกม</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+            background: url("img/start/15.png") no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: #6f7fae;
+        }
+
+        .container {
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-size: 80pt;
+            font-weight: 800;
+            margin-bottom: 20px;
+            margin-top: 15px;
+        }
+
+        h2 {
+            font-size: 70pt;
+            font-weight: 800;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .game-selection {
+            display: flex;
+            justify-content: center;
+            gap: 300px;
+            margin-top: 20px;
+        }
+
+        .game-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            text-align: center;
+            margin: 10px;
+        }
+
+        .game-icon2 {
+            height: 300px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+             margin-right: 100px;
+           
+        }
+
+        .game-icon1 {
+            height: 300px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            
+             margin-left: 200px;
+        }
+
+        .game-button1 {
+            width: 320px;
+            height: 100px;
+            background-color: #edd596;
+            border: none;
+            border-radius: 50px;
+            font-size: 30px;
+            font-weight: bold;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-right: 90px;
+            color: #545454;
+        }
+        .game-button2 {
+            width: 320px;
+            height: 100px;
+            background-color: #edd596;
+            border: none;
+            border-radius: 50px;
+            font-size: 30px;
+            font-weight: bold;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-left: 160px;
+            color: #545454;
+        }
+
+        .game-button:hover {
+            background-color: #d1bb84;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>กรุณาเลือกเกมที่คุณอยากจะเล่น</h1>
+        <h2>Please choose your desired game</h2>
+
+        <div class="game-selection">
+            <div class="game-option">
+                <img src="img/start/g1.png" alt="Romance of 3 Kingdoms" class="game-icon2">
+                <button class="game-button1" onclick="playSoundAndGo('left.html')">Romance <br> of 3 Kingdoms</button>
+            </div>
+
+            <div class="game-option">
+                <img src="img/home2/home.ico" alt="ศาสตร์การอนุมาน" class="game-icon1">
+                <button class="game-button2" onclick="playSoundAndGo('right.html')">ศาสตร์การอนุมาน <br>
+                    โดยอาจารย์โฮล์มส์</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="buttonSound" src="img/start/s1.mp3"></audio>
+
+    <script>
+        function playSoundAndGo(targetPage) {
+            let sound = document.getElementById("buttonSound");
+            sound.play();
+            setTimeout(() => {
+                window.location.href = targetPage;
+            }, 200); // หน่วงเวลา 500ms เพื่อให้เสียงเล่นก่อนเปลี่ยนหน้า
+        }
+    </script>
+</body>
+
+</html>

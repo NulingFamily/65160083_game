@@ -1,0 +1,744 @@
+/* ใช้ฟอนต์ Sarabun กับทุกส่วน */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Sarabun', sans-serif;
+  box-sizing: border-box;
+  color: #333;
+}
+
+/* ======== โครงสร้างหลักของแต่ละ Screen ======== */
+.screen {
+  display: none;
+  /* ซ่อนทุกหน้าด้วยค่า default */
+  padding: 20px;
+}
+
+/* พื้นหลังหลัก */
+#main-menu-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("img/home2/start.jpg") center center / cover no-repeat;
+  opacity: 0.20;
+  /* โปร่งใส 30% */
+  z-index: -1;
+  pointer-events: none;
+  /* ไม่บังการคลิก */
+}
+
+/* ======== หน้าแรก (Main Menu) ======== */
+#main-menu {
+  display: block;
+  /* แสดงหน้าหลักเป็นหน้าแรก */
+  text-align: center;
+}
+
+.back-to-start {
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  /* ย้ายไปมุมซ้าย */
+ 
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.back-to-start img {
+  width: 140px;
+  height: 80px;
+  margin-top: 20px;
+
+}
+
+/* ปรับหัวข้อเกมเป็น*/
+#main-menu h1 {
+  font-size: 80pt;
+  font-weight: 800;
+  /* หนามากขึ้น */
+  color: #6f7fae;
+  margin-top: 0;
+  /* ขยับขึ้นสุด */
+  margin-bottom: 10px;
+  /* หรือค่าที่เหมาะสม */
+}
+
+/* ฟอร์มกรอกชื่อผู้เล่น */
+#player-form {
+  margin-top: 20px;
+  text-align: center;
+  
+  
+}
+
+#player-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #545454;
+}
+
+/* ช่อง input สีเหลือง ขอบโค้ง */
+#player-form input[type="text"] {
+  width: 320px;
+  height: 90px;
+  padding: 10px 15px;
+  margin: 20px;
+  border: 2px solid #edd596;
+  border-radius: 60px;
+  background-color: #edd596;
+  /* สีเหลือง */
+  color: #545454;
+  font-size: 26pt;
+  text-align: center;
+  outline: none;
+  font-weight: 700;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+/* แถวปุ่มหน้าแรก */
+.button-row {
+  margin-top: 25px;
+}
+
+/* ไอคอนใหญ่ */
+.big-icon {
+  display: inline-block;
+  width: 130px;
+  /* ขยายขนาดตามต้องการ */
+  height: 80px;
+  vertical-align: middle;
+  /* เว้นระยะรอบๆ */
+}
+
+/* ปุ่มสีเหลือง ขอบโค้ง */
+.main-button {
+  display: inline-block;
+  /* เปลี่ยนจาก flex เป็น inline-block เพื่อเซ็ต height ตรงๆ ได้ง่าย */
+  height: 70px;
+  width: 190px;
+  line-height: 20px;
+  /* ข้อความอยู่ตรงกลางแนวตั้ง */
+  padding: 0 15px;
+  /* ไม่ต้องมี padding บน-ล่าง เพราะกำหนด height ตายตัวแล้ว */
+  margin-top: 20px;
+  background-color: #edd596;
+  border: 2px solid #edd596;
+  border-radius: 50px;
+  cursor: pointer;
+  color: #545454;
+  font-weight: 700;
+  /* ตัวหนา */
+  font-size: 21pt;
+  text-align: center;
+  /* กลางแนวนอน */
+  margin-right: 40px;
+  margin-left: 0px;
+
+}
+
+.main-button:active {
+  background-color: #d1bb84;
+}
+
+/* ปรับสไตล์ปุ่มเมื่อเอาเมาส์วางหรือกด */
+.main-button:hover {
+  background-color: #d1bb84;
+}
+
+/*======================================*/
+
+/* ----- game-screen โครงสร้างหลัก ------ */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 0px;
+}
+
+.game-header-left {
+  max-width: 200px;
+  /* หรือปรับตามต้องการ */
+  font-size: 20pt;
+  color: #6f7fae;
+  margin: 0;
+  /* ลดระยะห่างบน-ล่างให้แคบลง */
+}
+
+.game-header-left p {
+  line-height: 1.0;
+  /* หรือค่าที่ต้องการ (1.2, 1.1 ฯลฯ) */
+}
+
+/* วิธีที่ 2: ลด margin ของแต่ละ <p> */
+.game-header-left p {
+  margin: 12px 1px;
+  /* ลดระยะห่างบน-ล่างของแต่ละบรรทัด */
+}
+
+/* จัดข้อความ #game-rules ให้อยู่กลาง + ปรับขนาดเป็น 18pt */
+#game-rules {
+  font-size: 18pt;
+  text-align: center;
+  margin-top: 0;
+  /* ลดระยะขอบบน */
+  margin-bottom: 15px;
+  /* ลดระยะขอบล่าง จากเดิม 15px เป็น 5px */
+  margin-left: 30px;
+}
+
+.game-header-center {
+  text-align: center;
+  flex: 1;
+}
+
+/* ไอคอน home + ชื่อเกม */
+.game-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48pt;
+  color: #6f7fae;
+  font-weight: 700;
+  margin-bottom: 20px;
+  margin-top: 15px;
+
+}
+
+
+/* ไอคอน home */
+.title-icon {
+  width: 100px;
+  /* ปรับขนาดตามชอบ */
+  height: 80px;
+  margin-right: 10px;
+  margin-left: 0;
+  opacity: 0.7;
+}
+
+/* ภาพคำถามขนาดเท่ากันเสมอ (ตัวอย่าง 400x300) */
+.question-image {
+  display: block;
+  width: 700px;
+  /* ความกว้างภาพ */
+  height: 250px;
+  /* ความสูงภาพ */
+  object-fit: cover;
+  /* ตัดภาพให้พอดีกรอบ */
+  margin: 0 auto;
+  /* จัดกลางแนวนอน */
+  margin-top: 10px;
+  /* ขยับรูปให้ห่างจากข้อความ “จงเลือกคำตอบ...” 5px */
+  border-radius: 20px;
+  /* ขอบโค้ง (ปรับค่าตามต้องการ) */
+  margin-bottom: 0px;
+}
+
+/* โซนลำโพง + ข้อความโจทย์ */
+.question-container {
+  max-width: 100%px;
+  /* ไม่ให้โจทย์ยาวเกินหน้า */
+  margin: 10px 5px;
+  /* จัดกึ่งกลาง */
+  text-align: center;
+  font-size: 22pt;
+  margin-top: 10px;
+
+}
+
+/* ไอคอนลำโพง */
+.sound-icon {
+  width: 70px;
+  /* ปรับตามชอบ */
+  height: 70px;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-right: 8px;
+
+
+}
+
+.question-text {
+  display: inline-block;
+  max-width: 80%;
+  /* บีบข้อความในกรอบ */
+  word-wrap: break-word;
+  /* ตัดขึ้นบรรทัดใหม่อัตโนมัติ */
+  text-align: left;
+  /* หรือ center ถ้าต้องการกลาง */
+  vertical-align: middle;
+  /* ไอคอนลำโพงกับข้อความอยู่ระดับเดียวกัน */
+
+}
+
+
+
+/* ตัวเลือกคำตอบเป็นปุ่มโค้งสีเหลือง (ปรับสีให้ใกล้รูปตัวอย่าง) */
+.choices-container {
+  text-align: center;
+  margin-top: 1px;
+}
+
+.choices-container button {
+  margin-right: 20px;
+  padding: 15px 25px;
+  height: 60px;
+  cursor: pointer;
+  border-radius: 30px;
+  /* โค้งมน */
+  border: 0px solid #edd596;
+  /* ขอบสีเหลืองอ่อน */
+  background-color: #edd596;
+  color: #545454;
+  font-weight: 700;
+  font-size: 18pt;
+}
+
+.choices-container button:hover {
+  background-color: #d1bb84;
+}
+
+.choices-container button:active {
+  background-color: #bfa871;
+}
+
+/* ข้อความผลตอบรับ (ถูก/ผิด) */
+.feedback-text {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20pt;
+  color: #6f7fae;
+  ;
+  /* ถ้าถูก/ผิด จะเปลี่ยนข้อความได้ใน JS */
+}
+
+.correct {
+  background-color: #21d77f !important;
+  /* เขียว */
+  color: #545454 !important;
+}
+
+.incorrect {
+  background-color: #ff6d6d !important;
+  /* แดง */
+  color: #545454 !important;
+}
+
+/* ========== หน้าสรุปคะแนน ========== */
+
+/* กล่อง Head ด้านบน: ไอคอนซิลูเอตต์ + ชื่อเกม */
+.score-title-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 0px;
+  margin-right: 10px;
+  margin-left: 0;
+  text-align: center;
+
+
+}
+
+/* ไอคอน Sherlock Holmes มุมบนซ้าย */
+.score-holmes-silhouette {
+  width: 120px;
+  height: 100px;
+  margin-left: 40px;
+  margin-right: 20px;
+  opacity: 0.7;
+  margin-bottom: 0px;
+
+}
+
+/* ชื่อเกมใหญ่ถัดจากไอคอน */
+.score-game-title-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48pt;
+  color: #6f7fae;
+  font-weight: 700;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+/* ปรับระยะห่างด้านบนของคอนเทนต์สรุปคะแนนตรงกลาง */
+.score-center {
+  position: relative;
+  z-index: 10;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  /* ถ้ารู้สึกว่าข้างบนชิดเกินไป ก็เพิ่ม padding-top ได้ */
+  margin-top: 0px;
+  margin-left: 600px;
+  margin-right: 0px;
+
+}
+/* นักสืบล่างซ้าย */
+.score-detective-img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 700px;
+  height: 570px;
+  margin-left: 0px;
+  
+}
+
+/* หอนาฬิกาล่างขวา */
+.score-bigben-img {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 15%;
+  width: 300px;
+  height: 600px;
+  
+}
+
+
+/* ชื่อผู้เล่น */
+.score-player-label {
+  font-size: 40pt;
+  margin-bottom: 20px;
+  color: #6f7fae;
+  margin-top: 40px;
+
+}
+
+/* หัวข้อ "สรุปคะแนนในเกมนี้" */
+.score-headline {
+  font-size: 40pt;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  color: #6f7fae;
+}
+
+/* คะแนน */
+.score-points {
+  font-size: 60pt;
+  font-weight: 700;
+  color: #6f7fae;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.score-number {
+  font-size: 60pt;
+  color: #6f7fae;
+}
+
+/* ข้อความชม */
+.score-compliment {
+  font-size: 40pt;
+  font-weight: 700;
+  color: #6f7fae;
+  margin-bottom: 20px;
+  margin-top: 0px;
+}
+
+/* แถวปุ่มล่าง */
+.score-button-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 45px;
+  color: #edd596;
+  margin-left: 40px;
+    margin-right: 0px;
+}
+
+/* ปุ่มวงกลม */
+.score-circle-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #6f7fae;
+  border: none;
+  cursor: pointer;
+  color: #edd596;
+  font-size: 12pt;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+/* ไอคอนในปุ่มวงกลม */
+.score-circle-btn img {
+  width: 60px;
+  height: 35px;
+  margin-bottom: 3px;
+  color: #edd596;
+}
+
+.score-circle-btn:hover {
+  background-color: #53659e;
+}
+
+/* ปุ่ม "เล่นอีกครั้ง" */
+.score-playagain-btn {
+  padding: 10px 20px;
+  background-color: #edd596;
+  border: 2px solid #edd596;
+  border-radius: 50px;
+  font-size: 18pt;
+  color: #545454;
+  font-weight: 700;
+  cursor: pointer;
+  width: 190px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.score-playagain-btn:hover {
+  background-color: #d1bb84;
+}
+
+.score-playagain-btn:active {
+  background-color: #bfa871;
+}
+
+
+/* ======= สไตล์ร้านค้า ======= */
+
+/* หัวข้อร้านค้า */
+.shop-header-container {
+  display: flex;
+  justify-content: space-between; /* ชื่อร้านค้าอยู่ซ้าย ปุ่มหน้าแรกอยู่ขวา */
+  align-items: center;
+  margin: 10px auto;
+  margin-bottom: 15px;
+  
+  height: 120px;
+
+}
+.shop-header {
+  display: flex;
+  justify-content: center;
+  /* จัดให้อยู่ตรงกลาง */
+  align-items: center;
+  background-color: #edd596;
+  border-radius: 60px;
+  margin: 20px auto;
+  margin-bottom: 15px;
+  width: 450px;
+  height: 110px;
+  text-align: left;
+}
+
+/* ข้อความ "ร้านค้า" */
+.shop-title {
+  font-size: 46pt;
+  font-weight: bold;
+  color: #6f7fae;
+  display: flex;
+  align-items: left;
+  gap: 3px;
+  /* เว้นระยะระหว่างไอคอนกับข้อความ */
+}
+
+/* ไอคอนรถเข็น */
+.cart-icon {
+    width: 130px;
+      height: 75px;
+      margin-right: 3px;
+      margin-left: 0px;
+}
+
+/* กล่องข้อมูลผู้เล่น */
+.shop-player-info {
+  position: absolute;
+  left: 40px;
+  top: 30px;
+  font-size: 20pt;
+  color: #6f7fae;
+}
+
+.shop-player-info p{
+margin: 12px 1px;
+}
+
+/* ปุ่มกลับหน้าแรก */
+.shop-home-button {
+display: flex;
+  flex-direction: column;
+align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #6f7fae;
+  border: none;
+  cursor: pointer;
+  color: #edd596;
+  font-size: 14pt;
+  text-decoration: none;
+  margin-right: 15px;
+  margin-top: 0px;
+  margin-bottom: 30px;
+}
+
+.shop-home-button:hover {
+  background-color: #53659e;
+}
+
+.shop-home-button img {
+  width: 75px;
+    height: 45px;
+    margin-bottom: 3px;
+    color: #edd596;
+}
+
+/* แสดงรายการพื้นหลัง */
+#backgrounds {
+  display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* จัดให้อยู่กลาง */
+    gap: 30px;
+    /* เพิ่มระยะห่างระหว่างรายการ */
+    margin-top: 10px;
+    padding: 20px;
+    width: 90%;
+    /* กำหนดความกว้างให้พอดีกับหน้าจอ */
+    max-width: 1200px;
+    /* จำกัดความกว้างเพื่อให้ดูดี */
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.background-item {
+  text-align: center;
+    width: 320px;
+    /* เพิ่มขนาดของแต่ละรายการ */
+    position: relative;
+}
+
+/* รูปภาพพื้นหลัง */
+.background-item img {
+  width: 100%;
+  border-radius: 0px;
+}
+
+/* กล่องข้อมูลราคาและปุ่ม */
+.price-container {
+  display: flex;
+  flex-direction: row;
+  /* จัดให้อยู่แนวนอน */
+  align-items: center;
+  /* จัดให้อยู่กึ่งกลาง */
+  justify-content: center;
+  /* จัดให้อยู่กลาง */
+  gap: 10px;
+  /* เพิ่มช่องว่างระหว่างไอคอนราคาและปุ่ม */
+  margin-top: 10px;
+  font-size: 22px;
+  /* ปรับขนาดตัวอักษร */
+}
+
+/* ข้อมูลราคา */
+.price-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  /* เพิ่มช่องว่างระหว่างไอคอนและข้อความ */
+  font-size: 22px;
+  color: #6f7fae;
+}
+
+/* ไอคอน coin ใต้ภาพ (คงสีเดิม) */
+.price-info img {
+  width: 50px;
+  height: 30px;
+  margin-right: 1px;
+  opacity: 1;
+  /* คงความชัด */
+}
+
+/* ปุ่ม "ซื้อ" หรือ "ใช้" */
+.shop-button {
+  font-size: 22px;
+  border-radius: 25px;
+  cursor: pointer;
+  background-color: #edd596;
+  border: none;
+  color: #6f7fae;
+  width: 70px;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ปุ่มเมื่อ hover */
+.shop-button:hover {
+  background-color: #d1bb84;
+}
+
+/* ทำให้เฉพาะภาพจางลง แต่ไอคอนและปุ่มยังเหมือนเดิม */
+.owned .background-image img {
+  opacity: 0.55;
+}
+
+/* ปุ่มและราคา คงความชัดเจนเหมือนเดิม */
+.owned .price-container,
+.owned .shop-button {
+  opacity: 1;
+}
+
+/* ข้อความ "มีแล้ว" ให้อยู่กลางภาพ */
+.owned::after {
+  content: "มีแล้ว";
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #545454;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 24px;
+  text-align: center;
+  
+}
+
+/* ปุ่มที่ถูกเลือกจะเป็นสีน้ำเงินและมีไอคอนเครื่องหมายถูก */
+.shop-button.active {
+  
+  background-color: #6f7fae;
+  /* สีน้ำเงิน */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 40px;
+  padding: 0;
+text-align: center;
+border-radius: 20px;
+}
+
+/* ใส่ไอคอนถูกในปุ่ม */
+.shop-button.active::before {
+  content: "";
+  background: url("img/shopHome/buy1.ico") no-repeat center center;
+  background-size: contain;
+  width: 50px;
+  height: 50px;
+}
